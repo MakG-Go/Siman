@@ -25,7 +25,6 @@ export default {
       let soundData = this.soundsStorage[this.sound];
       let complexityData = this.complexityStorage[this.complexity];
       let skin = this.skinStorage[this.skin];
-      console.log(skin, "---skinStorage");
 
       complexityData["level"] = this.complexity;
       this.$emit("v-start", complexityData, soundData, skin);

@@ -3,6 +3,7 @@
 body {
   font-family: "Teko", sans-serif;
   background-color: $black;
+  user-select: none;
 }
 
 .wrapper {

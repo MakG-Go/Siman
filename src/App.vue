@@ -21,8 +21,6 @@ export default {
   },
   methods: {
     getField(complexity, sound, skin) {
-      console.log(skin)
-
       this.complexity = complexity;
       this.sound = sound;
       this.skin = skin;

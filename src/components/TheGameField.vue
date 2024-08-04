@@ -46,13 +46,10 @@ export default {
         const segment = this.getRandomInt(0, this.complexity.segments);
         this.patern.push(segment);
         this.lockPlain = false;
-        console.log(this.patern);
       }
     },
 
     showPatern(index) {
-      console.log("showPatern");
-
       this.$refs.audio.forEach((item, key) => {
         key != index ? item.stopSound() : "";
       });
@@ -196,13 +193,9 @@ export default {
   watch: {
     start() {
       if (this.start) {
-        console.log(this.skin)
-
         this.startGamePreview();
         return;
       }
-
-
       this.activeBtn = 0;
       this.round = 0;
       this.currentChoice = 0;
@@ -241,8 +234,8 @@ export default {
 
     getSegmentClass() {
       return {
-        segment: this.skin.class != 'circle',
-        segment__circle: this.skin.class === 'circle',
+        segment: this.skin.class != "circle",
+        segment__circle: this.skin.class === "circle",
       };
     },
 
@@ -262,14 +255,14 @@ export default {
 
     getFeeldSkin() {
       return {
-        field: this.skin.class != 'circle',
-        field__circle: this.skin.class === 'circle',
+        field: this.skin.class != "circle",
+        field__circle: this.skin.class === "circle",
       };
     },
 
     getSegmentSkin() {
       return (item) => {
-        if (this.skin.class === 'circle') {
+        if (this.skin.class === "circle") {
           return {
             transform: `rotate(${(360 / this.complexity.segments) * item}deg)`,
           };
@@ -278,9 +271,9 @@ export default {
     },
 
     getComplexityClass() {
-      if (this.skin.class === 'circle'){
-        return`segment__circle_${this.complexity.level}`
-      };
+      if (this.skin.class === "circle") {
+        return `segment__circle_${this.complexity.level}`;
+      }
       return `segment_${this.complexity.level}`;
     },
   },
@@ -309,7 +302,7 @@ export default {
         @v-audioUpdate="audioUpdate"
       >
       </Segmet>
-      <Score :score="round" :skin="skin"/>
+      <Score :score="round" :skin="skin" :start="startGame" />
     </section>
   </div>
 </template>
