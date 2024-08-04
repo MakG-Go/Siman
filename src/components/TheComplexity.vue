@@ -8,6 +8,7 @@ export default {
   components: { Select, Radio },
   props: {
     show: { type: Boolean, default: false },
+    gameRestart: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -20,13 +21,21 @@ export default {
       sound: "Standart",
     };
   },
+  mounted() {
+    if (this.gameRestart) {
+      this.skin = "classic";
+      this.complexity = "easy";
+      this.sound = "Standart";
+    }
+  },
   methods: {
     start() {
       let soundData = this.soundsStorage[this.sound];
       let complexityData = this.complexityStorage[this.complexity];
+      complexityData["level"] = this.complexity;
+
       let skin = this.skinStorage[this.skin];
 
-      complexityData["level"] = this.complexity;
       this.$emit("v-start", complexityData, soundData, skin);
       this.hideBtn = true;
     },
@@ -45,35 +54,21 @@ export default {
 
 <template>
   <div class="complexity">
-    <h1 class="text">Simon Says</h1>
-    <h3 class="text complexity__title"></h3>
+    <ul class="complexity__items">
+      <li class="complexity__item">
+        <h3>Сложность:</h3>
+        <Radio :data-storage="complexityStorage" @v-radio="getGomplexity" />
+      </li>
+      <li class="complexity__item">
+        <h3>Скин:</h3>
+        <Radio :data-storage="skinStorage" @v-radio="getSkin" />
+      </li>
+      <li class="complexity__item">
+        <h3>Мелодия:</h3>
+        <Select :data-storage="soundsStorage" @v-select="getSound" />
+      </li>
+    </ul>
 
- 
-      <ul class="complexity__items" v-if="!show">
-        <li class="complexity__item">
-          <h3>Сложность:</h3>
-          <Radio :data-storage="complexityStorage" @v-radio="getGomplexity" />
-        </li>
-        <li class="complexity__item">
-          <h3>Скин:</h3>
-          <Radio :data-storage="skinStorage" @v-radio="getSkin" />
-        </li>
-        <li class="complexity__item">
-          <h3>Мелодия:</h3>
-          <Select :data-storage="soundsStorage" @v-select="getSound" />
-        </li>
-      </ul>
-
-
-    <transition name="bounce" appear>
-      <button
-        v-if="!show"
-        class="button"
-        style="--color: #4db1bc"
-        @click="start"
-      >
-        PLay
-      </button>
-    </transition>
+    <button class="button" style="--color: #4db1bc" @click="start">PLay</button>
   </div>
 </template>

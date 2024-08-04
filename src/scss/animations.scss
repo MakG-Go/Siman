@@ -7,7 +7,7 @@
 .bounce-leave-to {
   opacity: 0;
   filter: blur(10px);
-  transform: translateY(-100%);
+  transform: translate(-100%, -50%);
 }
 
 .bounce-enter-active {
@@ -16,6 +16,20 @@
 
 .bounce-leave-active {
   position: absolute;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.complex-enter-active,
+.complex-leave-active {
+  transition: 0.5s;
+}
+
+
+.complex-enter-from,
+.complex-leave-to {
+  opacity: 0;
+  filter: blur(10px);
 }
 
 /*-----------------------------------------------------------------------------*/

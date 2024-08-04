@@ -16,7 +16,7 @@ export default {
       restart: false,
       complexity: {},
       sound: {},
-      skin:{},
+      skin: {},
     };
   },
   methods: {
@@ -25,7 +25,6 @@ export default {
       this.sound = sound;
       this.skin = skin;
       this.show = true;
-
     },
 
     onAfterEnter() {
@@ -52,8 +51,10 @@ export default {
 };
 </script>
 <template>
-
-  <Complexity @v-start="getField" :show="show" />
+  <h1 class="text">Simon Says</h1>
+  <transition name="complex" appear>
+    <Complexity v-if="!show" @v-start="getField" :game-restart="start" />
+  </transition>
 
   <transition name="bounce" @after-enter="onAfterEnter" mode="out-in">
     <GameField
@@ -68,10 +69,6 @@ export default {
   </transition>
 
   <transition name="bounce" mode="out-in">
-    <LiderBoard
-      v-if="restart"
-      @v-on-restart="getRestart"
-      @v-to-menu="toMenu"
-    />
+    <LiderBoard v-if="restart" @v-on-restart="getRestart" @v-to-menu="toMenu" />
   </transition>
 </template>

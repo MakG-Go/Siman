@@ -27,15 +27,11 @@ export default {
       round: 0,
       currentChoice: 0,
       activeSegment: null,
-
       startGame: false,
       startPreview: false,
       lockPlain: false,
-
       patern: new Array(),
-
       correct: "",
-
       circle: true,
     };
   },
@@ -271,9 +267,11 @@ export default {
     },
 
     getComplexityClass() {
+      
       if (this.skin.class === "circle") {
         return `segment__circle_${this.complexity.level}`;
       }
+
       return `segment_${this.complexity.level}`;
     },
   },
