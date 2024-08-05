@@ -29,8 +29,10 @@ export default {
     audioUpdate(event) {
       this.$emit("v-audioUpdate", event);
     },
+
   },
   mounted() {
+    this.$refs.sound.load();
     this.$refs.sound.volume = 0.5;
     this.$refs.sound.playbackRate = this.complexity.speed;
   },
