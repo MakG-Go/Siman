@@ -51,7 +51,10 @@ export default {
 };
 </script>
 <template>
-  <h1 class="text">Simon Says</h1>
+  <transition name="complex" appear>
+    <h1 v-if="!show" class="text">Simon Says</h1>
+  </transition>
+
   <transition name="complex" appear>
     <Complexity v-if="!show" @v-start="getField" :game-restart="start" />
   </transition>
