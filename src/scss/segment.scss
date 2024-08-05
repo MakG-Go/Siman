@@ -42,7 +42,11 @@
 
   &_easy {
     max-width: calc(50% - 1rem);
+
     @media screen and (max-width: 576px) {
+      max-width: calc(50% - 0.5rem);
+    }
+    @media screen and (orientation: landscape){
       max-width: calc(50% - 0.5rem);
     }
   }
